@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'layout/align.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -91,6 +93,13 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            RaisedButton(
+              child: Text('GoTo AlignPage'),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => LayoutAlignPage()));
+              },
+            ),
             Text(
               'You have pushed the button this many times:',
             ),
