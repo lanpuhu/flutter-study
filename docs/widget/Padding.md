@@ -19,7 +19,7 @@ const Padding({
   })
 ```
 * key: 组件的标识
-* padding: 内边距大小，参考 [EdgeInsetsGeometry](../painting/Alignment.md)
+* padding: 内边距大小，参考 [EdgeInsets](../painting/Alignment.md)
 * child: 子组件
 
 ## 4 使用方式

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'layout/align.dart';
+import 'layout/align_page.dart';
+import 'layout/padding_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -98,6 +99,13 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => LayoutAlignPage()));
+              },
+            ),
+            RaisedButton(
+              child: Text('GoTo PaddingPage'),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => LayoutPaddingPage()));
               },
             ),
             Text(
