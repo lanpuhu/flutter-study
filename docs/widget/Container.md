@@ -42,7 +42,16 @@ Container({
        super(key: key);
 ```
 * key: 组件的标识
-* padding: 内边距大小，参考 [EdgeInsets](../painting/Alignment.md)
+* alignment: 子组件的对齐方式，参考 [Alignment](../painting/Alignment.md)
+* padding: 子组件的内边距大小，参考 [EdgeInsets](../painting/EdgeInsets.md)
+* decoration: (装饰者，暂时理解为组件背景)
+* color: 若 decoration 为空并且 color 不空，则会创建一个 BoxDecoration(color) 并赋值给 decoration
+* foregroundDecoration: 前景
+* width: 组件宽度
+* height: 组件宽度
+* constraints: 尺寸约束，若 width 和 height 不为空，则使用 width 和 height 来创建约束
+* margin: 装饰和子组件之间的间距？
+* transform: 矩阵变换
 * child: 子组件
 
 ## 4 使用方式
