@@ -56,8 +56,20 @@ Container({
 
 ## 4 使用方式
 ```dart
-Padding(
-    padding: EdgeInsets.all(8.0),
-    child: const Card(child: Text('Hello World!')),
+Container(
+  constraints: BoxConstraints.expand(
+    height: Theme.of(context).textTheme.display1.fontSize * 1.1 + 200.0,
+  ),
+  padding: const EdgeInsets.all(8.0),
+  color: Colors.blue[600],
+  alignment: Alignment.center,
+  child: Text(
+    'Hello World',
+    style: Theme.of(context)
+      .textTheme
+      .display1
+      .copyWith(color: Colors.white),
+  ),
+  transform: Matrix4.rotationZ(0.1),
 )
 ```
