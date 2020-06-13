@@ -50,9 +50,54 @@ Container({
 * width: 组件宽度
 * height: 组件宽度
 * constraints: 尺寸约束，若 width 和 height 不为空，则使用 width 和 height 来创建约束
-* margin: 装饰和子组件之间的间距？
+* margin: 装饰和子组件外部的区域
 * transform: 矩阵变换
 * child: 子组件
+
+### 3.2 build 函数
+```dart
+Widget build(BuildContext context) {
+  Widget current = child;
+
+  if (child == null && (constraints == null || !constraints.isTight)) {
+    current = LimitedBox(
+      maxWidth: 0.0,
+      maxHeight: 0.0,
+      child: ConstrainedBox(constraints: const BoxConstraints.expand()),
+    );
+  }
+
+  if (alignment != null)
+    current = Align(alignment: alignment, child: current);
+
+  final EdgeInsetsGeometry effectivePadding = _paddingIncludingDecoration;
+  if (effectivePadding != null)
+    current = Padding(padding: effectivePadding, child: current);
+
+  if (decoration != null)
+    current = DecoratedBox(decoration: decoration, child: current);
+
+  if (foregroundDecoration != null) {
+    current = DecoratedBox(
+      decoration: foregroundDecoration,
+      position: DecorationPosition.foreground,
+      child: current,
+    );
+  }
+
+  if (constraints != null)
+    current = ConstrainedBox(constraints: constraints, child: current);
+
+  if (margin != null)
+    current = Padding(padding: margin, child: current);
+
+  if (transform != null)
+    current = Transform(transform: transform, child: current);
+
+  return current;
+}
+```
+通过一层层的组件包裹，将所有的属性组合在一起。
 
 ## 4 使用方式
 ```dart
@@ -73,3 +118,4 @@ Container(
   transform: Matrix4.rotationZ(0.1),
 )
 ```
+
