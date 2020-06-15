@@ -13,6 +13,14 @@ Color c = const Color.fromRGBO(66, 165, 245, 1.0);
 
 ```
 
+如果你碰到一个颜色不能显示的问题，请检查以确保指定了完整的8个十六进制数字。如果你只指定6个，则假设前2位为零，表示完全透明。
+```dart
+Color c1 = const Color(0xFFFFFF); // 不可见的完全透明白色
+Color c2 = const Color(0xFFFFFFFF); // 可见的完全不透明的白色
+```
+
+[参考 Material 设计规范中对颜色的定义](https://docs.flutter.io/flutter/material/Colors-class.html)
+
 ## 2. 继承关系
 ```
 Alignment -> AlignmentGeometry
