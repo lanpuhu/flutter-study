@@ -1,5 +1,5 @@
-# Color 属性
-## 1. 功能简介
+# Color
+## 1. 功能介绍
 > An immutable 32 bit color value in ARGB format.
 
 一个 ARGB 格式的不可变的 32 位颜色值。
@@ -28,10 +28,10 @@ Color c2 = const Color(0xFFFFFFFF); // 可见的完全不透明的白色
 Color
 ```
 
-## 3. 基本规则
+## 3. 基本信息
 一个 32 位的值表示一个颜色值。24-31 表示 alpha；16-23 表示红色；8-15 表示绿色；0-7 表示蓝色。
 
-## 4. 源码解析
+## 4. 关键成员
 ### 4.1 构造函数
 ```dart
 // 使用一个整数的低 32 位来表示一个颜色
@@ -56,40 +56,3 @@ const Color.fromRGBO(int r, int g, int b, double opacity) :
 * g: 绿色，范围为 [0, 255]
 * b: 蓝色，范围为 [0, 255]
 * opacity: 不透明度，范围为 [0.0, 1.0]
-
-## 5 使用方式
-### 5.1 创建对象
-```
-Alignment(0.1, 0.2),
-```
-
-### 5.2 常用快捷方式
-Flutter SDK 中提供了几个常用的点位，可以直接使用。
-```
-/// The top left corner.
-static const Alignment topLeft = Alignment(-1.0, -1.0);
-
-/// The center point along the top edge.
-static const Alignment topCenter = Alignment(0.0, -1.0);
-
-/// The top right corner.
-static const Alignment topRight = Alignment(1.0, -1.0);
-
-/// The center point along the left edge.
-static const Alignment centerLeft = Alignment(-1.0, 0.0);
-
-/// The center point, both horizontally and vertically.
-static const Alignment center = Alignment(0.0, 0.0);
-
-/// The center point along the right edge.
-static const Alignment centerRight = Alignment(1.0, 0.0);
-
-/// The bottom left corner.
-static const Alignment bottomLeft = Alignment(-1.0, 1.0);
-
-/// The center point along the bottom edge.
-static const Alignment bottomCenter = Alignment(0.0, 1.0);
-
-/// The bottom right corner.
-static const Alignment bottomRight = Alignment(1.0, 1.0);
-```
