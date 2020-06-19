@@ -13,31 +13,18 @@
 Offset -> OffsetBase
 ```
 
-## 3. 基本信息
-一个 32 位的值表示一个颜色值。24-31 表示 alpha；16-23 表示红色；8-15 表示绿色；0-7 表示蓝色。
-
-## 4. 关键成员
-### 4.1 构造函数
+## 3. 关键成员
+### 3.1 构造函数
 ```dart
-// 使用一个整数的低 32 位来表示一个颜色
-const Color(int value) : value = value & 0xFFFFFFFF;
+// 创建一个偏移量
+// dx: 水平分量
+// dy: 垂直分量
+const Offset(double dx, double dy) : super(dx, dy);
 
-// 使用 4 个整数的低 8 位来表示一个颜色
-const Color.fromARGB(int a, int r, int g, int b) :
-  value = (((a & 0xFF) << 24) |
-           ((r & 0xFF) << 16) |
-           ((g & 0xFF) << 8)  |
-           ((b & 0xFF) << 0)) & 0xFFFFFFFF;
-
-// 使用红绿蓝和不透明度来表示一个颜色，类似于 CSS 中的 `rgba()`
-const Color.fromRGBO(int r, int g, int b, double opacity) :
-  value = ((((opacity * 0xFF ~/ 1) & 0xFF) << 24) |
-            ((r & 0xFF) << 16) |
-            ((g & 0xFF) << 8)  |
-            ((b & 0xFF) << 0)) & 0xFFFFFFFF;
+// 根据方向和距离创建偏移量
+// direction: 从 x 轴正方向顺时针的弧度
+// distance: 可选参数，默认创建单位向量
+factory Offset.fromDirection(double direction, [ double distance = 1.0 ]) {
+  return Offset(distance * math.cos(direction), distance * math.sin(direction));
+}
 ```
-* a: alpha，范围为 [0, 255]
-* r: 红色，范围为 [0, 255]
-* g: 绿色，范围为 [0, 255]
-* b: 蓝色，范围为 [0, 255]
-* opacity: 不透明度，范围为 [0.0, 1.0]
