@@ -23,50 +23,39 @@ Flex 布局分六步进行：
 5. 主轴的范围由 mainAxisSize 属性决定。如果 mainAxisSize 是 MainAxisSize.max，则主轴的范围是传入的主轴约束的最大范围。如果 mainAxisSize 是 MainAxisSize.min，则主轴的范围是所有子组件的主轴范围的最大值。
 6. 根据 mainAxisAlignment 和 crossAxisAlignment 来决定每个子组件的位置。例如，如果 mainAxisAlignment 是 MainAxisAlignment.spaceBetween，则主轴还没有被分配的空间将会被均匀地划分并分布在子组件之间。
 
-```dart
-Rect rect = const Offset(1.0, 2.0) & const Size(3.0, 4.0);
-```
+可参考：
+* [Row] 组件的水平方向的版本。
+* [Column] 组件的垂直方向版本。
+* [Expanded] 表明子组件需要充满所有剩余空间。
+* [Flexible] 表明子组件需要分享剩余空间。
+* [Spacer] 一个占用的空间大小与其 flex 值成比例的组件，尺寸可能比较小。
 
 ## 2. 继承关系
 ```dart
-Rect
+Flex -> MultiChildRenderObjectWidget -> RenderObjectWidget -> Widget
 ```
 
 ## 3. 关键成员
 ### 3.1 构造函数
 ```dart
-// 根据左上右下四个边创建一个矩形
-const Rect.fromLTRB(this.left, this.top, this.right, this.bottom)
-  : assert(left != null),
-    assert(top != null),
-    assert(right != null),
-    assert(bottom != null);
-
-// 根据左上两个边和宽高创建一个矩形
-const Rect.formLTWH(double left, double top, double width, double height)
- : this.fromLTRB(left, top, left + width, top + bottom);
-
-// 根据中心点和宽高创建一个矩形
-Rect.fromCenter({Offset center, double width, double height})
-  : this.fromLTRB(
-    center.dx - width / 2,
-    center.dy - height / 2,
-    center.dx + width / 2,
-    center.dy + height / 2
-  );
-
-// 根据中心点和半径创建一个矩形
-Rect.fromCircle({Offset center, double radius}) : this.fromCenter(
-  center: center,
-  width: radius * 2.0,
-  height: radius * 2.0
-);
-
-// 根据两个点构建一个矩形，该矩形包含这两个点，且是最小的
-Rect.fromPoints(Offset a, Offset b) : this.fromLTRB(
-  math.min(a.dx, b.dx),
-  math.min(a.dy, b.dy),
-  math.max(a.dx, b.dx),
-  math.max(a.dy, b.dy)
-);
+// 创建一个 Flex 布局
+// direction 是必要参数
+// direction, mainAxisAlignment, mainAxisSize, verticalDirection 参数不能为空，如果 crossAxisAlignment 是 CrossAxisAlignment.baseline 那么 textBaseline 不能为空
+Flex({
+  Key key,
+  @required this.direction,
+  this.mainAxisAlignment = MainAxisAlignment.start,
+  this.mainAxisSize = MainAxisSize.max,
+  this.crossAxisAlignment = CrossAxisAlignment.center,
+  this.textDirection,
+  this.verticalDirection = VerticalDirection.down,
+  this.textBaseline,
+  List<Widget> children = const <Widget>[],
+}) : assert(direction != null),
+     assert(mainAxisAlignment != null),
+     assert(mainAxisSize != null),
+     assert(crossAxisAlignment != null),
+     assert(verticalDirection != null),
+     assert(crossAxisAlignment != CrossAxisAlignment.baseline || textBaseline != null),
+     super(key: key, children: children);
 ```
