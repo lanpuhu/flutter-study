@@ -59,3 +59,18 @@ Flex({
      assert(crossAxisAlignment != CrossAxisAlignment.baseline || textBaseline != null),
      super(key: key, children: children);
 ```
+
+### 3.2 成员变量
+#### direction
+主轴的方向
+
+#### mainAxisAlignment
+子组件在主轴上的对齐方式
+
+#### mainAxisSize
+主轴上应该占多少空间，给子组件分配空间以后，可能还有一些剩余的自由空间。
+该值用来控制传入的布局约束是最大化还是最小化可用空间。
+如果有子组件有非零弹性因子，而且没有一个适合的 FlexFit.loose，它们将扩展并消耗所有的可用空间，这样就没有剩余可用空间来设置布局约束最大化或最小化，最终的布局就跟这个值无关。
+
+#### crossAxisAlignment
+子组件在侧轴上的对齐方式
