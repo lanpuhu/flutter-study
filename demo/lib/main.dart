@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'layout/align_page.dart';
+import 'layout/flex_page.dart';
 import 'layout/padding_page.dart';
 
 void main() => runApp(MyApp());
@@ -106,6 +107,13 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => LayoutPaddingPage()));
+              },
+            ),
+            RaisedButton(
+              child: Text('GoTo FlexPage'),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => FlexPage()));
               },
             ),
             Text(
