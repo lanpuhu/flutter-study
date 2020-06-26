@@ -15,6 +15,7 @@ class FlexAlignmentContent extends StatelessWidget {
     return Row(
       mainAxisAlignment: this.mainAxisAlignment,
       crossAxisAlignment: this.crossAxisAlignment,
+      textBaseline: TextBaseline.alphabetic,
       children: <Widget>[
         Container(
           width: 60,
@@ -50,6 +51,12 @@ class _FlexPageState extends State<FlexPage> {
       _mainAxisAlignment = value;
     });
   }
+
+  void updateCrossAxisAlignment(value) {
+    setState(() {
+      _crossAxisAlignment = value;
+    });
+  }
   
   @override
   Widget build(BuildContext context) {
@@ -65,48 +72,131 @@ class _FlexPageState extends State<FlexPage> {
             color: Colors.grey[300],
             child: FlexAlignmentContent(
               mainAxisAlignment: this._mainAxisAlignment,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: this._crossAxisAlignment,
             ),
           ),
-          Text(
-            "MainAxisAlignment",
+          Padding(
+            padding: EdgeInsets.only(
+              top: 10
+            ),
+            child: Text(
+              "MainAxisAlignment",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold
+              ),
+            ),
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              Radio(
-                value: MainAxisAlignment.start,
-                groupValue: this._mainAxisAlignment,
-                onChanged: (value) => this.updateMainAxisAlignment(value),
+              Column(
+                children: <Widget>[
+                  Radio(
+                    value: MainAxisAlignment.start,
+                    groupValue: this._mainAxisAlignment,
+                    onChanged: this.updateMainAxisAlignment,
+                  ),
+                  Text('start'),
+                  Radio(
+                    value: MainAxisAlignment.spaceBetween,
+                    groupValue: this._mainAxisAlignment,
+                    onChanged: this.updateMainAxisAlignment,
+                  ),
+                  Text('spaceBetween'),
+                ],
               ),
-              Radio(
-                value: MainAxisAlignment.center,
-                groupValue: this._mainAxisAlignment,
-                onChanged: (value) => this.updateMainAxisAlignment(value),
+              Column(
+                children: <Widget>[
+                  Radio(
+                    value: MainAxisAlignment.center,
+                    groupValue: this._mainAxisAlignment,
+                    onChanged: this.updateMainAxisAlignment,
+                  ),
+                  Text('center'),
+                  Radio(
+                    value: MainAxisAlignment.spaceAround,
+                    groupValue: this._mainAxisAlignment,
+                    onChanged: this.updateMainAxisAlignment,
+                  ),
+                  Text('spaceAround'),
+                ],
               ),
-              Radio(
-                value: MainAxisAlignment.end,
-                groupValue: this._mainAxisAlignment,
-                onChanged: (value) => this.updateMainAxisAlignment(value),
-              ),
-              Radio(
-                value: MainAxisAlignment.spaceBetween,
-                groupValue: this._mainAxisAlignment,
-                onChanged: (value) => this.updateMainAxisAlignment(value),
-              ),
-              Radio(
-                value: MainAxisAlignment.spaceAround,
-                groupValue: this._mainAxisAlignment,
-                onChanged: (value) => this.updateMainAxisAlignment(value),
-              ),
-              Radio(
-                value: MainAxisAlignment.spaceEvenly,
-                groupValue: this._mainAxisAlignment,
-                onChanged: (value) => this.updateMainAxisAlignment(value),
+              Column(
+                children: <Widget>[
+                  Radio(
+                    value: MainAxisAlignment.end,
+                    groupValue: this._mainAxisAlignment,
+                    onChanged: this.updateMainAxisAlignment,
+                  ),
+                  Text('end'),
+                  Radio(
+                    value: MainAxisAlignment.spaceEvenly,
+                    groupValue: this._mainAxisAlignment,
+                    onChanged: this.updateMainAxisAlignment,
+                  ),
+                  Text('spaceEvenly'),
+                ],
               ),
             ],
           ),
-          Text(
-            "CrossAxisAlignment",
+          Padding(
+            padding: EdgeInsets.only(
+                top: 10
+            ),
+            child: Text(
+              "CrossAxisAlignment",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold
+              ),
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Column(
+                children: <Widget>[
+                  Radio(
+                    value: CrossAxisAlignment.start,
+                    groupValue: this._crossAxisAlignment,
+                    onChanged: this.updateCrossAxisAlignment,
+                  ),
+                  Text('start'),
+                  Radio(
+                    value: CrossAxisAlignment.stretch,
+                    groupValue: this._crossAxisAlignment,
+                    onChanged: this.updateCrossAxisAlignment,
+                  ),
+                  Text('stretch'),
+                ],
+              ),
+              Column(
+                children: <Widget>[
+                  Radio(
+                    value: CrossAxisAlignment.center,
+                    groupValue: this._crossAxisAlignment,
+                    onChanged: this.updateCrossAxisAlignment,
+                  ),
+                  Text('center'),
+                  Radio(
+                    value: CrossAxisAlignment.baseline,
+                    groupValue: this._crossAxisAlignment,
+                    onChanged: this.updateCrossAxisAlignment,
+                  ),
+                  Text('baseline'),
+                ],
+              ),
+              Column(
+                children: <Widget>[
+                  Radio(
+                    value: CrossAxisAlignment.end,
+                    groupValue: this._crossAxisAlignment,
+                    onChanged: this.updateCrossAxisAlignment,
+                  ),
+                  Text('end'),
+                ],
+              ),
+            ],
           ),
         ],
       ),
