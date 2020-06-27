@@ -64,7 +64,7 @@ Flex({
 #### direction
 主轴的方向。
 
-#### mainAxisAlignment
+#### [MainAxisAlignment](#41-MainAxisAlignment) mainAxisAlignment
 子组件在主轴上的对齐方式。
 
 #### mainAxisSize
@@ -84,3 +84,32 @@ Flex({
 #### textBaseline
 指定组件的对齐基线。
 
+## 4. 相关类
+### 4.1 MainAxisAlignment
+子组件在 Flex 布局中主轴上的对齐方式。
+
+#### start
+将子组件尽可能地放置在靠近主轴的起始位置。
+
+如果在水平方向上使用此值，[TextDirection] 必须要指定以确定起始位置是左侧还是右侧。
+
+如果在垂直方向上使用此值，[VerticalDirection] 必须要指定以确定起始位置是上边还是下边。
+
+#### end
+将子组件尽可能地放置在靠近主轴的结束位置。
+
+如果在水平方向上使用此值，[TextDirection] 必须要指定以确定结束位置是左侧还是右侧。
+
+如果在垂直方向上使用此值，[VerticalDirection] 必须要指定以确定结束位置是上边还是下边。
+
+#### center
+将子组件尽可能地放置在靠近主轴的中心位置。
+
+#### spaceBetween
+将剩余空间均匀地分布在子组件之间。
+
+#### spaceAround
+将剩余空间均匀地分布在子组件之间，并且第一个组件之前和最后一个组件之后各占均分的空间的一半。
+
+#### spaceEvenly
+将剩余空间均匀地分布在子组件之间，包括第一个组件之前和最后一个组件之后。
