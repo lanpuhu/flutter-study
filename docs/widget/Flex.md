@@ -67,12 +67,12 @@ Flex({
 #### [MainAxisAlignment](#41-MainAxisAlignment) mainAxisAlignment
 子组件在主轴上的对齐方式。
 
-#### mainAxisSize
+#### [MainAxisSize](#43-MainAxisSize) mainAxisSize
 主轴上应该占多少空间，给子组件分配空间以后，可能还有一些剩余的自由空间。
 该值用来控制传入的布局约束是最大化还是最小化可用空间。
 如果有子组件有非零弹性因子，而且没有一个适合的 FlexFit.loose，它们将扩展并消耗所有的可用空间，这样就没有剩余可用空间来设置布局约束最大化或最小化，最终的布局就跟这个值无关。
 
-#### crossAxisAlignment
+#### [CrossAxisAlignment](#42-CrossAxisAlignment) crossAxisAlignment
 子组件在侧轴上的对齐方式。
 
 #### textDirection
@@ -113,3 +113,34 @@ Flex({
 
 #### spaceEvenly
 将剩余空间均匀地分布在子组件之间，包括第一个组件之前和最后一个组件之后。
+
+### 4.2 CrossAxisAlignment
+子组件在 Flex 布局中侧轴上的对齐方式。
+
+#### start
+将子组件的起始边缘与侧轴的起始位置对齐。
+
+如果在水平方向上使用此值，[TextDirection] 必须要指定以确定起始位置是左侧还是右侧。
+
+如果在垂直方向上使用此值，[VerticalDirection] 必须要指定以确定起始位置是上边还是下边。
+
+#### end
+将子组件尽可能放置在侧轴的结束位置。
+
+如果在水平方向上使用此值，[TextDirection] 必须要指定以确定结束位置是左侧还是右侧。
+
+如果在垂直方向上使用此值，[VerticalDirection] 必须要指定以确定结束位置是上边还是下边。
+
+#### center
+将子组件的中心与侧轴的中心对齐。
+
+#### stretch
+将子组件在侧轴方向填满。这将导致传递给子组件的约束在侧轴上是严格的。
+
+#### baseline
+将子组件在侧轴方向匹配它们的基线。如果主轴是垂直的，那么这个值将会被当做 start，因为基线始终是水平的。
+
+### 4.3 MainAxisSize
+主轴应该占用多少空间。
+
+在弹性布局过程中，将主轴上的可用空间分配给子组件。分配空间后，可能还有一些剩余空间。该值控制是否根据传入的布局约束来最大化或最小化可用空间。
