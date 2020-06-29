@@ -144,3 +144,17 @@ Flex({
 主轴应该占用多少空间。
 
 在弹性布局过程中，将主轴上的可用空间分配给子组件。分配空间后，可能还有一些剩余空间。该值控制是否根据传入的布局约束来最大化或最小化可用空间。
+
+#### min
+最小化主轴上的可用空间，具体取决于传入的布局约束。
+
+如果传入的布局约束具有足够大的 [BoxConstraints.minWidth] 或 [BoxConstraints.minHeight]，可能仍然存在非零的可用空间。
+
+如果传入的布局约束是无限制的，并且任何一个子组件有一个非零的 [FlexParentData.flex] 和一个 [FlexFit.tight] the [RenderFlex] will assert。因为这样可用空间将会是无限的，但是不能给一个无限的大小。
+
+#### max
+最大化主轴上的可用空间，具体取决于传入的布局约束。
+
+如果传入的布局约束具有足够小的 [BoxConstraints.maxWidth] 或 [BoxConstraints.maxHeight]，可能仍然没有可用空间。
+
+如果传入的布局约束是无限制的，the [RenderFlex] will assert。因为这样可用空间将会是无限的，但是不能给一个无限的大小。
