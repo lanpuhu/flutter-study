@@ -61,7 +61,7 @@ Flex({
 ```
 
 ### 3.2 成员变量
-#### direction
+#### [Axis](#44-Axis) direction
 主轴的方向。
 
 #### [MainAxisAlignment](#41-MainAxisAlignment) mainAxisAlignment
@@ -158,3 +158,27 @@ Flex({
 如果传入的布局约束具有足够小的 [BoxConstraints.maxWidth] 或 [BoxConstraints.maxHeight]，可能仍然没有可用空间。
 
 如果传入的布局约束是无限制的，the [RenderFlex] will assert。因为这样可用空间将会是无限的，但是不能给一个无限的大小。
+
+### 4.4 Axis
+二维基本方向。轴始终相对于当前坐标空间，例如，由于某些局部转换应用场景，一个水平轴可能是从右上到左下的斜对角。
+
+#### horizontal & vertical
+横轴、纵轴。
+
+### 4.5 AxisDirection
+沿着横轴或纵轴上的方向。
+
+#### up
+零值在底部，正值在其上方：⇈
+
+#### right
+零值在左边，正值在其右边：⇉
+
+#### down
+零值在顶部，正值在其下方：⇊
+
+#### left
+零值在右边，正值在其左边：⇇
+
+### 4.5 TextDirection
+文字展示的方向。TODO
