@@ -24,7 +24,7 @@ Flex 布局分六步进行：
 6. 根据 mainAxisAlignment 和 crossAxisAlignment 来决定每个子组件的位置。例如，如果 mainAxisAlignment 是 MainAxisAlignment.spaceBetween，则主轴还没有被分配的空间将会被均匀地划分并分布在子组件之间。
 
 可参考：
-* [Row] 组件的水平方向的版本。
+* [Row](#47-Row) 组件的水平方向的版本。
 * [Column] 组件的垂直方向版本。
 * [Expanded] 表明子组件需要充满所有剩余空间。
 * [Flexible] 表明子组件需要分享剩余空间。
@@ -181,4 +181,43 @@ Flex({
 零值在右边，正值在其左边：⇇
 
 ### 4.5 TextDirection
-文字展示的方向。TODO
+文字展示的方向。有一些语言是从左到右的，有一些是从右到左，还有一些是混合的。
+
+#### rtl & ltr
+从左到右、从右到左。
+
+### 4.6 VerticalDirection
+垂直布局的方向。
+
+#### up & down
+从下到上、从上到下。
+
+### 4.7 Row
+```dart
+class Row extends Flex {
+  Row({
+    Key key,
+    MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
+    MainAxisSize mainAxisSize = MainAxisSize.max,
+    CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
+    TextDirection textDirection,
+    VerticalDirection verticalDirection = VerticalDirection.down,
+    TextBaseline textBaseline,
+    List<Widget> children = const <Widget>[],
+  }) : super(
+    children: children,
+    key: key,
+    direction: Axis.horizontal,
+    mainAxisAlignment: mainAxisAlignment,
+    mainAxisSize: mainAxisSize,
+    croassAxisAlignment: crossAxisAlignment,
+    textDirection: textDirection,
+    verticalDirection: verticalDirection,
+    textBaseline: textBaseline,
+  );
+}
+```
+
+### 4.8 Column
+```dart
+```
