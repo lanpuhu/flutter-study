@@ -220,4 +220,24 @@ class Row extends Flex {
 
 ### 4.8 Column
 ```dart
+Column({
+  Key key,
+  MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
+  MainAxisSize mainAxisSize = MainAxisSize.max,
+  CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
+  TextDirection textDirection,
+  VerticalDirection verticalDirection = VerticalDirection.down,
+  TextBaseline textBaseline,
+  List<Widget> children = const <Widget>[],
+}) super(
+  children: children,
+  key: key,
+  direction: Axis.vertical,
+  mainAxisAlignment: mainAxisAlignment,
+  mainAxisSize: mainAxisSize,
+  crossAxisAlignment: crossAxisAlignment,
+  textDirection: textDirection,
+  verticalDirection: verticalDirection,
+  textBaseline: textBaseline,
+);
 ```
