@@ -241,3 +241,12 @@ Column({
   textBaseline: textBaseline,
 );
 ```
+
+### 4.9 FlexFit
+描述子组件如何填充可用空间。
+
+#### tight
+严格模式，子组件强制填充所有可用空间。[Expanded] 组件分配这个模式给它的子组件。
+
+#### loose
+自由模式，子组件最大可以和可用空间一样大，也可以更小。[Flexible] 组件分配这个模式给它的子组件。
