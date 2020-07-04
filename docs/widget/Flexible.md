@@ -9,10 +9,25 @@
 
 ## 2. 继承关系
 ```dart
-Flex -> MultiChildRenderObjectWidget -> RenderObjectWidget -> Widget
+Flexible -> ParentDataWidget<Flex> -> ProxyWidget -> Widget
 ```
 
 ## 3. 关键成员
 ### 3.1 构造函数
+```dart
+const Flexible({
+  Key key,
+  this.flex = 1,
+  this.fit = FlexFit.loose,
+  @required Widget child,
+}) : super(key: key, child: child);
+```
+
+### 3.2 关键成员
+#### int flex
+用于子组件的弹性因子。如果为 null 或零，则子组件是不弹性的并且由它自己的大小决定。如果为非零，则子组件在主轴上能够占用的空间大小由剩余空间（已经分配了非弹性的子组件）根据弹性因子进行分割。
+
+#### FlexFit fit
+描述一个弹性子组件如何占有剩余空间 TODO
 
 ## 4. 相关类
