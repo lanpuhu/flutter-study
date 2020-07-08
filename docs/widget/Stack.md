@@ -12,16 +12,19 @@ Stack 组件渲染子组件的顺序是第一个子组件被渲染在底部。�
 
 ## 2. 继承关系
 ```dart
-Expanded -> Flexible -> ParentDataWidget<Flex> -> ProxyWidget -> Widget
+Stack -> MultiChildRenderObjectWidget -> RenderObjectWidget -> Widget
 ```
 
 ## 3. 关键成员
 ### 3.1 构造函数
 ```dart
-const Expanded({
+Stack({
   Key key,
-  int flex = 1,
-  @required Widget child,
-}) : super(key: key, flex: flex, fit: FlexFit.tight, child: child);
+  this.alignment = AlignmentDirectional.topStart,
+  this.textDirection,
+  this.fit = StackFit.loose,
+  this.overflow = Overflow.clip,
+  List<Widget> children = const <Widget>[],
+}) : super(key: key, children: children);
 ```
 ## 4. 相关类
