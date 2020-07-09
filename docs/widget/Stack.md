@@ -27,4 +27,11 @@ Stack({
   List<Widget> children = const <Widget>[],
 }) : super(key: key, children: children);
 ```
+### 3.2 成员变量
+#### AlignmentGeometry alignment
+非定位的子组件的对齐方式。
+
+#### Overflow overflow
+超出边界的子组件是否被裁剪
+
 ## 4. 相关类
