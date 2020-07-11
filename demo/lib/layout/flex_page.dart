@@ -12,25 +12,47 @@ class FlexAlignmentContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: this.mainAxisAlignment,
-      crossAxisAlignment: this.crossAxisAlignment,
-      textBaseline: TextBaseline.alphabetic,
+    return Stack(
+      fit: StackFit.expand,
       children: <Widget>[
-        Container(
-          width: 60,
-          height: 60,
-          color: Colors.red,
+        Row(
+          mainAxisAlignment: this.mainAxisAlignment,
+          crossAxisAlignment: this.crossAxisAlignment,
+          textBaseline: TextBaseline.alphabetic,
+          children: <Widget>[
+            Container(
+              width: 60,
+              height: 60,
+              color: Colors.red,
+            ),
+            Container(
+              width: 30,
+              height: 30,
+              color: Colors.green,
+            ),
+            Container(
+              width: 90,
+              height: 90,
+              color: Colors.blue,
+            ),
+          ],
         ),
-        Container(
-          width: 30,
-          height: 30,
-          color: Colors.green,
-        ),
-        Container(
-          width: 90,
-          height: 90,
-          color: Colors.blue,
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+                '${this.mainAxisAlignment}',
+              style: TextStyle(
+                fontWeight: FontWeight.bold
+              ),
+            ),
+            Text(
+                '${this.crossAxisAlignment}',
+              style: TextStyle(
+                fontWeight: FontWeight.bold
+              ),
+            ),
+          ],
         ),
       ],
     );
