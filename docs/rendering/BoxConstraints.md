@@ -38,63 +38,51 @@ Flutter 框架对渲染对象使用一遍布局模型进行布局，该模型会
 
 ## 2. 继承关系
 ```dart
-Transform -> SingleChildRenderObjectWidget -> RenderObjectWidget -> Widget
+BoxConstraints -> Constraints
 ```
 
 ## 3. 关键成员
 ### 3.1 构造函数
 ```dart
-const Transform({
-  Key key,
-  @required this.transform,
-  this.origin,
-  this.alignment,
-  this.transformHitTests = true,
-  Widget child,
-}) : assert(transform != null),
-     super(key: key, child: child);
+const BoxConstraints({
+  this.minWidth = 0.0,
+  this.maxWidth = double.infinity,
+  this.minHeight = 0.0,
+  this.maxHeight = double.infinity,
+});
 
-// 将子组件绕其中心顺时针旋转一定角度
-Transform.rotate({
-  Key key,
-  @required double angle,
-  this.origin,
-  this.alignment = Alignment.center,
-  this.transformHitTests = true,
-  Widget child,
-}) : transform = Matrix4.rotationZ(angle),
-     super(key: key, child: child);
+// 使用指定尺寸来创建一个边界约束
+const BoxConstraints.tight(Size size)
+  : minWidth = size.width,
+    maxWidth = size.width,
+    minHeight = size.height,
+    maxHeight = size.height;
 
-// 将子组件平移一定距离
-Transform.translate({
-  Key key,
-  @required Offset offset,
-  this.transformHitTests = true,
-  Widget child,
-}) : transform = Matrix4.translationValues(offset.dx, offset.dy, 0.0),
-     origin = null,
-     alignment = null,
-     super(key: key, child: child);
+// 使用指定宽高来创建一个边界约束
+const BoxConstraints.tightFor({
+  double width,
+  double height,
+}) : minWidth = width ?? 0.0,
+     maxWidth = width ?? double.infinity,
+     minHeight = height ?? 0.0,
+     maxHeight = height ?? double.infinity;
 
-// 将子组件均匀缩放一定比例
-Transform.scale({
-  Key key,
-  @required double scale,
-  this.origin,
-  this.alignment = Alignment.center,
-  this.transformHitTests = true,
-  Widget child,
-}) : transform = Matrix4.diagonal3Values(scale, scale, 1.0),
-     super(key: key, child: child);
+// 使用指定尺寸来创建一个边界约束，限制其大小不能超过这个尺寸
+BoxConstraints.loose(Size size)
+  : minWidth = 0.0,
+    maxWidth = size.width,
+    minHeight = 0.0,
+    maxHeight = size.height;
+
+// 创建一个边界约束来填充另外一个边界约束
+const BoxConstraints.expand({
+  double width,
+  double height,
+}) : minWidth = width ?? double.infinity,
+     maxWidth = width ?? double.infinity,
+     minHeight = height ?? double.infinity,
+     maxHeight = height ?? double.infinity;
 ```
 ### 3.2 成员变量
-#### Matrix4 transform
-渲染子组件过程中用到的矩阵
-
-#### Offset origin
-应用矩阵的系统坐标原点，相对于父组件的左上角。
-
-#### AlignmentGeometry alignment
-原点的对齐方式，相对于盒子的大小。
 
 ## 4. 相关类
