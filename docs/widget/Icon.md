@@ -77,4 +77,7 @@ Icon(
 );
 ```
 
+#### String semanticLabel
+图标的语义标签
+
 ## 4. 相关类
