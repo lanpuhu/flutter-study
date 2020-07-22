@@ -13,28 +13,55 @@
 
 要自动执行像素密度可感知的资源解决方案，请使用 [AssetImage]，并确保 [MaterialApp], [WidgetsApp] 或 [MediaQuery] 组件处于 [Image] 上层。
 
+默认构造函数可以使用任意 [ImageProvider]，例如 [NetworkImage] 来展示一张从网上来的图片。
+```dart
+const Image(
+  image: NetworkImage('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg),
+);
+```
+
+[Image] 组件也提供了一系列构造函数来方便的展示不同类型的图片。例如使用 [Image.network] 构造函数来展示一张从网上来的图片。
+```dart
+Image.network('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl-2.jpg');
+```
 
 ## 2. 继承关系
 ```dart
-Icon -> StatelessWidget -> Widget
+Image -> StatefulWidget -> Widget
 ```
 
 ## 3. 关键成员
 ### 3.1 构造函数
 ```dart
-// 创建一个 Icon，[size] 和 [color] 的默认值是由当前 [IconTheme] 给定的。
-const Icon(
-  this.icon, {
-    Key key,
-    this.size,
-    this.color,
-    this.semanticLabel,
-    this.textDirection,
-}) : super(key: key);
+// 创建一个图片组件
+const Image({
+  Key key,
+  @required this.image,
+  this.frameBuilder,
+  this.loadingBuilder,
+  this.semanticLabel,
+  this.excludeFromSemantics = false,
+  this.width,
+  this.height,
+  this.color,
+  this.colorBlendMode,
+  this.fit,
+  this.alignment = Alignment.center,
+  this.repeat = ImageRepeat.noRepeat,
+  this.centerSlice,
+  this.matchTextDirection = false,
+  this.gaplessPlayback = false,
+  this.filterQuality = FilterQuality.low,
+}) : assert(image != null),
+     assert(alignment != null),
+     assert(repeat != null),
+     assert(filterQuality != null),
+     assert(matchTextDirection != null),
+     super(key: key);
 ```
 ### 3.2 成员变量
-#### IconData icon
-需要展示的图标，可用的图标都被定义在 [Icons] 里面。该值可以为空，在这种场景下会使用指定尺寸绘制一个空白区域。
+#### ImageProvider image
+待展示的图片。
 
 #### double size
 图标的逻辑像素尺寸。图标占据一个正方形，宽高都等于 size。默认值是当前 [IconTheme] 尺寸，如果没有 [IconTheme]，或者其没有指定一个明确的值，则默认值为 24.0。
