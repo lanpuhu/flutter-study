@@ -61,29 +61,11 @@ const Image({
 ```
 ### 3.2 成员变量
 #### ImageProvider image
-待展示的图片。
+待展示的图像。
 
-#### double size
-图标的逻辑像素尺寸。图标占据一个正方形，宽高都等于 size。默认值是当前 [IconTheme] 尺寸，如果没有 [IconTheme]，或者其没有指定一个明确的值，则默认值为 24.0。
+#### ImageFrameBuilder frameBuilder
+一个构造器函数，负责创建代表该图像的组件。
 
-如果这个 [Icon] 被用在一个 [IconButton] 中，则使用 [IconButton.iconSize] 来替代，这样 [IconButton] 就可以使活动区域具有适当的大小。[IconButton] 使用 [IconTheme] 来传递尺寸 到 [Icon] 中。
-
-#### Color color
-渲染图标的时候使用的颜色。默认值由当前的 [IconTheme] 来决定。给定的颜色会适配当前 [IconTheme] 中指定的不透明度。
-
-在材质主题中，如果 [Theme] 中没有指定 [IconTheme]，图标颜色默认为：深色主题图标为白色；浅色主题图标为黑色。
-
-如果没有指定 [IconTheme] 和 [Theme]，则图标默认为黑色。
-
-通常情况下，一个材质设计，颜色都会被使用到，例如：
-```dart
-Icon(
-  icon: Icons.widgets,
-  color: Colors.blue.shade400,
-);
-```
-
-#### String semanticLabel
-图标的语义标签，在辅助模式中使用，在 UI 中不展示。
+如果该变量为空，该组件会在图像可用的时候立即展示图像的第一帧。调用者可以使用这个构造器向图像添加效果（例如图像可用时淡入）或者在图像的加载过程中展示一个占位符。
 
 ## 4. 相关类
