@@ -68,4 +68,61 @@ const Image({
 
 如果该变量为空，该组件会在图像可用的时候立即展示图像的第一帧。调用者可以使用这个构造器向图像添加效果（例如图像可用时淡入）或者在图像的加载过程中展示一个占位符。
 
+如果想对用户呈现更细粒度的图像加载进度，请参考 [loadingBuilder]。
+
+如果还为图像组件指定了 [loadingBuilder]，则两个构造器将连接在一起，当前构造器的结果将被以 child 参数传递给 [loadingBuilder]。例如，考虑以下结合使用的构造器：
+
+```dart
+Image(
+  ...
+  frameBuilder: (BuildContext context, Widget child, int frame, bool wasSynchronouslyLoaded) {
+    return Padding(
+      padding: EdgeInsets.all(8.0),
+      child: child,
+    );
+  },
+  loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent loadingProgress) {
+    return Center(child: child);
+  },
+)
+```
+这个例子中，组件层次结构将包含以下内容：
+```dart
+Center(
+  child: Padding(
+    padding: EdgeInsets.all(8.0),
+    child: <image>,
+  ),
+)
+```
+
+以下示例演示了如何使用此构建器来实现加载后的淡入效果：
+```dart
+@override
+Widget build(BuildContext context) {
+  return DecoratedBox(
+    decoration: BoxDecoration(
+      color: Colors.white,
+      border: Border.all(),
+      borderRadius: BorderRadius.circular(20),
+    ),
+    child: Image.network(
+      'https://example.com/image.jpg',
+      frameBuilder: (BuildContext context, Widget child, int frame, bool wasSynchronouslyLoaded) {
+        if (wasSynchronouslyLoaded) {
+          return child;
+        }
+        return AnimatedOpacity(
+          child: child,
+          opacity: frame == null ? 0 : 1,
+          duration: const Duration(seconds: 1),
+          curve: Curves.easeOut,
+        );
+      }
+    ),
+  );
+}
+```
+
+
 ## 4. 相关类
