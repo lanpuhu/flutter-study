@@ -124,5 +124,38 @@ Widget build(BuildContext context) {
 }
 ```
 
+#### ImageLoadingBuilder loadingBuilder
+一个构造器，它指定了图像在加载过程中，如何向用户展示。
+
+如果该变量为空，并且这个图像是逐步加载的（例如从网络加载），用户就不能收到这个图像的字节加载进度。
+
+如果图像指定了 [loadingBuilder]，那么 [Image] 组件会在每一个渲染管线帧上去重建，直到这个图片被加载完毕。这对于显示加载进度的情况很有用，但对于更简单的情况，例如展示一个占位符，它并不依赖于加载进度，例如静态文本“加载”，[frameBuilder] 可能会更有用，并且没有那么多的消耗。
+
+```dart
+Widget build(BuildContext context) {
+  return DecoratedBox(
+    decoration: BoxDecoration(
+      color: Colors.white,
+      border: Border.all(),
+      borderRadius: BorderRadius.circular(20),
+    ),
+    child: Image.network(
+      'https://example.com/image.jpg',
+      loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent loadingProgress) {
+        if (loadingProgress != null) {
+          return child;
+        }
+        return Center(
+          child: CircularProgressIndicator(
+            value: loadingProgress.expectedTotalBytes != null ?
+              ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes
+              : null,
+          ),
+        );
+      }
+    ),
+  );
+}
+```
 
 ## 4. 相关类
