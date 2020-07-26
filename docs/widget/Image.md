@@ -158,4 +158,24 @@ Widget build(BuildContext context) {
 }
 ```
 
+#### double width & height
+如果不为空，图像组件使用该宽度和高度。如果为空，则选择其固有尺寸。
+
+强烈建议同时制定 [width] 和 [height]，或者将组建放在严格约束的上下文中，这样图像在加载时不会改变其大小。如果实现不知道确切的图像尺寸，请考虑使用 [fit] 来适配图像的渲染。
+
+#### Color color
+如果为非空，则会使用 [colorBlendMode] 来将图像的每个像素点与该颜色进行混合。
+
+#### BlendMode colorBlendMode
+与 [color] 结合使用。默认值是 BlendMode.srcIn。在混合模式方面，[color] 是源，图像是目标。
+
+#### FilterQuality filterQuality
+使用 [FilterQuality.low] 双线性差值来缩放图像。使用 [FilterQuality.none] 最近邻点。
+
+#### BoxFit fit
+如何在布局过程中将图像渲染在分配的空间中。
+
+#### AlignmentGeometry alignment
+TODO
+
 ## 4. 相关类
