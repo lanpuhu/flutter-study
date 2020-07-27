@@ -58,6 +58,36 @@ const Image({
      assert(filterQuality != null),
      assert(matchTextDirection != null),
      super(key: key);
+
+// 通过网络资源创建一个图像组件
+Image.network(
+  String src, {
+  Key key,
+  double scale = 1.0,
+  ...
+  Map<String, String> headers,
+}) : image = NetworkImage(src, scale: scale, headers: headers),
+     ...
+     super(key: key);
+
+// 通过文件创建一个图像组件
+Image.file(
+  File file, {
+  Key key,
+  double scale = 1.0,
+  ...
+}) : image = FileImage(file, scale: scale)
+     ...
+     super(key: key);
+
+// 通过资源包创建一个图像组件，图像组件的 key 由 name 参数给出
+// 当显示包中的图像时，package 参数必须是非空的，否则为空。
+// 如果 bundle 参数被省略或者为空，[DefaultAssetBundle] 会被使用。
+// 默认情况下 ，将使用像素密度可感知的图像资源解析。此外：
+// 1. 如果提供了 scale 参数并且不空，则精确的资源将会被使用，如果要显示指定的密度的图像，必须提供确切的路径，例如 images/2x/cat.png
+// 2. [name] 和 [repeat] 参数不能为空
+
+
 ```
 ### 3.2 成员变量
 #### ImageProvider image
@@ -176,6 +206,19 @@ Widget build(BuildContext context) {
 如何在布局过程中将图像渲染在分配的空间中。
 
 #### AlignmentGeometry alignment
-TODO
+如何在图像组件范围内对齐图像。
+
+对齐属性将给定的位置与布局边界中给定的位置对齐。
+
+#### ImageRepeat repeat
+如何绘制布局边界没有被覆盖到的区域。
+
+#### Rect centerSlice
+点 9 图片的中心切片。
+
+中心切片内的图像区域将水平和垂直拉伸，以使图像适合其目标。中心切片上方和下方的图像区域仅水平拉伸，中心切片左侧和右侧的图像区域仅垂直拉伸。
+
+#### bool gaplessPlaback
+当图像提供者改变时，是继续显示旧图像，还是暂时不显示任何图像。
 
 ## 4. 相关类
