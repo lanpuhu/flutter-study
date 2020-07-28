@@ -71,6 +71,7 @@ Image.network(
      super(key: key);
 
 // 通过文件创建一个图像组件
+// Android 系统上可能会请求 “android.permission.READ_EXTERNAL_STORAGE” 权限
 Image.file(
   File file, {
   Key key,
@@ -86,6 +87,18 @@ Image.file(
 // 默认情况下 ，将使用像素密度可感知的图像资源解析。此外：
 // 1. 如果提供了 scale 参数并且不空，则精确的资源将会被使用，如果要显示指定的密度的图像，必须提供确切的路径，例如 images/2x/cat.png
 // 2. [name] 和 [repeat] 参数不能为空
+// 假设工程中的 pubspec.yaml 包含以下内容
+// flutter:
+//   assets:
+//     - images/cat.png
+//     - images/2x/cat.png
+//     - images/3.5x/cat.png
+// 在设备像素比为 2.0 的设备上，以下代码将会渲染 images/2x/cat.png 文件：
+Image.asset('images/cat.png');
+// 对应的文件是工程中的 images/2x/ 目录下的名字为 cat.png 文件，路径相对于 pubspec.yaml 文件。
+// 在设备像素比为 4.0 的设备上，images/3.5x/cat.png 文件会被使用。在设备像素比为 1.0 的设备上，images/cat.png 文件会被使用。
+// 图片 images/cat.png 图片可以从磁盘中省略，尽管其必须在清单中体现。如果它被省略，那么设备像素比为 1.0 的设备，images/2x/cat.png 文件会被替代使用。
+// TODO
 
 
 ```
