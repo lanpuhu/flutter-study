@@ -98,7 +98,20 @@ Image.asset('images/cat.png');
 // 对应的文件是工程中的 images/2x/ 目录下的名字为 cat.png 文件，路径相对于 pubspec.yaml 文件。
 // 在设备像素比为 4.0 的设备上，images/3.5x/cat.png 文件会被使用。在设备像素比为 1.0 的设备上，images/cat.png 文件会被使用。
 // 图片 images/cat.png 图片可以从磁盘中省略，尽管其必须在清单中体现。如果它被省略，那么设备像素比为 1.0 的设备，images/2x/cat.png 文件会被替代使用。
-// TODO
+// 从一个包资源中创建图像组件，[package] 组件必须要指定。例如，假设一个包叫做“my_icons”，里面有 icons/heart.png
+Image.asset('icons/heart.png', package: 'my_icons');
+// 包本身使用的资源也应该使用 [package] 参数。
+// 如果资源在 'pubspec.yaml' 中声明过了，则资源会自动跟应用打包在一起。特别是包本身需要使用的资源，需要再 'pubspec.yaml' 中声明。
+// 一个包也可以选择使用 lib 目录下的资源，该资源没有在 'pubspec.yaml' 中声明，在这种场景下图片需要打包，应用需要指定包含哪个资源。例如，一个包名叫做 'fancy_backgrounds' 需要：
+// lib/backgrounds/background1.png
+// lib/backgrounds/background2.png
+// lib/backgrounds/background3.png
+// 想要包含第一个图片，'pubspec.yaml' 需要指定以下部分
+// assets:
+//     - packages/fancy_backgrounds/backgrounds/background1.png
+// lib 已经被指定，它就不需要包含在资源路径中。
+
+
 
 
 ```
