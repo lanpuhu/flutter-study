@@ -110,10 +110,28 @@ Image.asset('icons/heart.png', package: 'my_icons');
 // assets:
 //     - packages/fancy_backgrounds/backgrounds/background1.png
 // lib 已经被指定，它就不需要包含在资源路径中。
+Image.asset(
+  String name, {
+  Key key,
+  AssetBundle bundle,
+  ...
+  String package,
+}) : image = scale != null
+      ? ExactAssetImage(name, bundle: bundle, scale: scale, package: package)
+      : AssetImage(name, bundle: budnle, package: package),
+      ...
+      super(key: key);
 
-
-
-
+// 通过 [Uint8List] 创建一个图像组件。
+// [bytes], [scale], [repeat] 参数不能为空。
+// 只接受压缩的图像格式，例如 png，未压缩的图像格式，例如 rawRgba。
+Image.memory(
+  Unit8List bytes, {
+  Key key,
+  ...
+}) : image = MemoryImage(bytes, scale: scale),
+   ...
+   super(key: key);
 ```
 ### 3.2 成员变量
 #### ImageProvider image
@@ -225,7 +243,7 @@ Widget build(BuildContext context) {
 #### BlendMode colorBlendMode
 与 [color] 结合使用。默认值是 BlendMode.srcIn。在混合模式方面，[color] 是源，图像是目标。
 
-#### FilterQuality filterQuality
+#### [FilterQuality](##41-FilterQuality) filterQuality
 使用 [FilterQuality.low] 双线性差值来缩放图像。使用 [FilterQuality.none] 最近邻点。
 
 #### BoxFit fit
@@ -248,3 +266,17 @@ Widget build(BuildContext context) {
 当图像提供者改变时，是继续显示旧图像，还是暂时不显示任何图像。
 
 ## 4. 相关类
+### 4.1 FilterQuality
+图像过滤器的质量等级
+
+#### none
+最快的过滤方式，然而质量也是最低的。通常使用最近相邻过滤。
+
+#### low
+质量比 [none] 好，速度比 [medium] 快。通常使用双线性插值。
+
+#### medium
+质量比 [low] 好，速度比 [high] 快。通常使用双线性插值和金字塔参数预滤波。
+
+#### high
+最高的质量，然而速度也是最慢的。通常使用双三次插值或更好。
