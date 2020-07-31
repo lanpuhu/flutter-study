@@ -240,7 +240,7 @@ Widget build(BuildContext context) {
 #### Color color
 如果为非空，则会使用 [colorBlendMode] 来将图像的每个像素点与该颜色进行混合。
 
-#### BlendMode colorBlendMode
+#### [BlendMode](#42-BlendMode) colorBlendMode
 与 [color] 结合使用。默认值是 BlendMode.srcIn。在混合模式方面，[color] 是源，图像是目标。
 
 #### [FilterQuality](##41-FilterQuality) filterQuality
@@ -280,3 +280,37 @@ Widget build(BuildContext context) {
 
 #### high
 最高的质量，然而速度也是最慢的。通常使用双三次插值或更好。
+
+### 4.2 BlendMode
+在画布上绘制时使用的算法。Porter-Duff 图像混叠模式。
+
+### 4.3 BoxFit
+描述一个盒子如何填充另外一个盒子。
+
+#### fill
+通过拉伸源盒子的比例来填充目标盒子。
+![](https://flutter.github.io/assets-for-api-docs/assets/painting/box_fit_fill.png)
+
+#### contain
+尽可能地大，并且将源盒子完整地显示在目标盒子中。
+![](https://flutter.github.io/assets-for-api-docs/assets/painting/box_fit_contain.png)
+
+#### cover
+尽可能地小，并且完整覆盖目标盒子。
+![](https://flutter.github.io/assets-for-api-docs/assets/painting/box_fit_cover.png)
+
+#### fitWidth
+确保源盒子的宽度完全显示，而不管源盒子在垂直方向上是否溢出目标盒子。
+![](https://flutter.github.io/assets-for-api-docs/assets/painting/box_fit_fitWidth.png)
+
+#### fitHeight
+确保源盒子的高度完全显示，而不管源盒子在水平方向上是否溢出目标盒子。
+![](https://flutter.github.io/assets-for-api-docs/assets/painting/box_fit_fitHeight.png)
+
+#### none
+在目标源盒子内对齐源盒子，默认情况下居中，并丢弃位于盒子外部的源盒子的任何部分。
+![](https://flutter.github.io/assets-for-api-docs/assets/painting/box_fit_none.png)
+
+#### scaleDown
+在目标源盒子内对齐源盒子，默认情况下居中，如有必要，将源盒子缩放以确保源盒子在目标盒子内。
+![](https://flutter.github.io/assets-for-api-docs/assets/painting/box_fit_scaleDown.png)
