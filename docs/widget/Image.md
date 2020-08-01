@@ -243,10 +243,10 @@ Widget build(BuildContext context) {
 #### [BlendMode](#42-BlendMode) colorBlendMode
 与 [color] 结合使用。默认值是 BlendMode.srcIn。在混合模式方面，[color] 是源，图像是目标。
 
-#### [FilterQuality](##41-FilterQuality) filterQuality
+#### [FilterQuality](#41-FilterQuality) filterQuality
 使用 [FilterQuality.low] 双线性差值来缩放图像。使用 [FilterQuality.none] 最近邻点。
 
-#### BoxFit fit
+#### [BoxFit](#43-BoxFit) fit
 如何在布局过程中将图像渲染在分配的空间中。
 
 #### AlignmentGeometry alignment
@@ -254,7 +254,7 @@ Widget build(BuildContext context) {
 
 对齐属性将给定的位置与布局边界中给定的位置对齐。
 
-#### ImageRepeat repeat
+#### [ImageRepeat](#44-ImageRepeat) repeat
 如何绘制布局边界没有被覆盖到的区域。
 
 #### Rect centerSlice
@@ -314,3 +314,12 @@ Widget build(BuildContext context) {
 #### scaleDown
 在目标源盒子内对齐源盒子，默认情况下居中，如有必要，将源盒子缩放以确保源盒子在目标盒子内。
 ![](https://flutter.github.io/assets-for-api-docs/assets/painting/box_fit_scaleDown.png)
+
+### 4.4 ImageRepeat
+如何绘制没有被图像覆盖的其它盒子区域。
+
+#### repeat & repeatX & repeatY
+在 X 和 Y 方向 （X 方向、Y 方向）重复图像，直到盒子被完全填充。
+
+#### noRepeat
+保持未覆盖的区域处于透明状态。
