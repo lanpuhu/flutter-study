@@ -70,7 +70,46 @@ const Text(
 }) : assert(data != null)
      textSpan = null,
      super(key: key);
+
+// 使用 [InlineSpan] 创建一个文本组件
+// [TextSpan] 定义了文本和一系列子文本 [InlineSpan]
+// [WidgetSpan] 定义嵌入的文本
+// [textSpan] 参数不能为空
+const Text.rich(
+  this.textSpan, {
+  Key key,
+  ...
+});
 ```
 ### 3.2 成员变量
+#### String data
+需要显示的文本，如果 textSpan 指定了，则该字段可以为空
+
+#### InlineSpan textSpan
+作为 [InlineSpan] 需要展示的文本。如果 data 指定了，则该字段为空
+
+#### TextStyle style
+如果该字段不空，则使用该样式作为文本的样式。
+如果该字段的 “inherit” 属性为 true，样式将会与最近的封闭 [DefaultTextStyle] 进行合并。否则，样式将会替代最近的封闭 [DefaultTextStyle]。
+
+#### StrutStyle strutStyle
+flutter.painting.textPainter.strutStyle
+
+#### TextAlign textAlign
+文本在水平方向上如何对齐。
+
+#### TextDirection textDirection
+文本显示的方向。
+
+#### Locale locale
+
+#### bool softWrap
+文本是否应该在软换行处折开。
+
+#### TextOverflow overflow
+文本溢出时该如何处理。
+
+#### double textScaleFactor
+每个逻辑像素对应的字体像素。例如，文本缩放因子是 1.5，文字会比指定的文字大小大50%。
 
 ## 4. 相关类
