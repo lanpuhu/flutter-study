@@ -112,4 +112,7 @@ flutter.painting.textPainter.strutStyle
 #### double textScaleFactor
 每个逻辑像素对应的字体像素。例如，文本缩放因子是 1.5，文字会比指定的文字大小大50%。
 
+#### int maxLines
+可选的文本折行的最大行数，超过给定行数，将根据 [overflow] 进行截断。
+
 ## 4. 相关类
