@@ -116,3 +116,14 @@ flutter.painting.textPainter.strutStyle
 可选的文本折行的最大行数，超过给定行数，将根据 [overflow] 进行截断。
 
 ## 4. 相关类
+### 4.1 TextAlign
+水平方向上如何对齐文本。
+
+#### left & right & center
+在容器左边、右边、中间对齐
+
+#### justify
+拉伸软换行符结尾的文本，填充容器的宽度
+
+#### start & end
+根据容器的方向来对齐
