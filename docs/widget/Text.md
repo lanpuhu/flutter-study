@@ -127,3 +127,18 @@ flutter.painting.textPainter.strutStyle
 
 #### start & end
 根据容器的方向来对齐
+
+### 4.2 TextOverflow
+文本溢出时该如何展示
+
+#### clip
+裁剪溢出的文本以适应其容器
+
+#### fade
+将溢出的文本变淡为透明
+
+#### ellipsis
+使用省略来处理溢出的文本
+
+#### visible
+在其容器外显示文本
